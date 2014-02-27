@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/Fev/2014, 9:59:21
+    Author     : Zueb LDA
+*/
+
+.btn {
+	-moz-box-shadow:inset 0px 0px 9px 1px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 9px 1px #ffffff;
+	box-shadow:inset 0px 0px 9px 1px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #adabad) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #adabad 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#adabad');
+	background-color:#ededed;
+	-webkit-border-top-left-radius:11px;
+	-moz-border-radius-topleft:11px;
+	border-top-left-radius:11px;
+	-webkit-border-top-right-radius:11px;
+	-moz-border-radius-topright:11px;
+	border-top-right-radius:11px;
+	-webkit-border-bottom-right-radius:11px;
+	-moz-border-radius-bottomright:11px;
+	border-bottom-right-radius:11px;
+	-webkit-border-bottom-left-radius:11px;
+	-moz-border-radius-bottomleft:11px;
+	border-bottom-left-radius:11px;
+	text-indent:0px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#171617;
+	font-family:Trebuchet MS;
+	font-size:56px;
+	font-weight:bold;
+	font-style:normal;
+	height:90px;
+	line-height:90px;
+	width:90px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #fcfcfc;
+}
+
+.igual{
+    
+    width: 180px;
+    float: right;
+    
+}
+.btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #adabad), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #adabad 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#adabad', endColorstr='#ededed');
+	background-color:#adabad;
+}.btn:active {
+	position:relative;
+	top:1px;
+}
+
+.tbl{
+    border-color: #171617;
+}

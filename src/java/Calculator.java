@@ -9,6 +9,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -22,13 +23,16 @@ import javax.servlet.http.HttpSession;
 public class Calculator {
 
     String expressao;
+    boolean calculado;
+    Double aux;
 
     /**
      * Creates a new instance of Calculator
      */
     public Calculator() {
         expressao = "";
-
+        calculado = false;
+        aux=0.0;
     }
 
     public String getExpressao() {
@@ -36,13 +40,12 @@ public class Calculator {
     }
 
     public void recebe(String str) {
-        
-        
-        
+
         expressao += str;
     }
 
     public void limpa() {
+        
         expressao = "";
     }
 
@@ -51,30 +54,13 @@ public class Calculator {
     }
 
     public void resultado() {
-//        if ((expressao != null)) {
-//            //invalidate user session
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
-//            session.invalidate();
-//
-//            return 
-        expressao += " = " + calcula(expressao);
-//        } else {
-//            return "";
-//        }
-        //return expressao;
-
+        //expressao += " = " + calcula(expressao);
+        expressao=""+calcula(expressao);
     }
 
-    public void resultado2() {
-//        StringWriter writer = new StringWriter();
-//        PrintWriter out = new PrintWriter(writer);
-//        out.println(expressao);
-//        String output = writer.toString();
-//
-//        expressao += " = " + output;
-
-    }
+   
+    
+    
 
 //    public String getResponse() {
 //        if ((expressao != null)) {
@@ -91,6 +77,9 @@ public class Calculator {
 //        }
 //    }
     private double calcula(String str) {
+        //Verifica se foi realizado o calculo
+        calculado = true;
+        //Cria 
         ArrayList<String> numeros = new ArrayList<>();
         ArrayList<String> operacoes = new ArrayList<>();
 
@@ -155,7 +144,8 @@ public class Calculator {
                 i++;
             }
         }
-
+        //guarda o valor caso necessite para continuar
+        aux= Double.parseDouble(numeros.get(0));
         return Double.parseDouble(numeros.get(0));
     }
 

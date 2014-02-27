@@ -58,10 +58,6 @@ public class Calculator {
         expressao=""+calcula(expressao);
     }
 
-   
-    
-    
-
 //    public String getResponse() {
 //        if ((expressao != null)) {
 //

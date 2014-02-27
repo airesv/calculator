@@ -4,48 +4,48 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <link href="css/estilos.css" rel="stylesheet" type="text/css" />
-        <title>Calculadeira</title>
+        <title>Calculator</title>
     </h:head>
     <h:body>
        <p>&nbsp;</p>
 
        <table class="tbl" align="center" border="0" cellpadding="1" cellspacing="1" summary="Calculadeira">
-	<caption><u><span style="font-size:14px;"><strong><em>Calculadeira</em></strong></span></u></caption>
+           <h1  class="titulo" align="center"> Calculator</h1>
 	<tbody>
             <h:form>	
             <tr>
-			<td colspan="4" style="text-align: center; vertical-align: middle; background-color: rgb(204, 204, 204);"><br />
-                            <h:outputText value="#{Calculator.expressao}"/>
+                <td colspan="4" class="cx"><br />
+                    <h:outputText class="texto" value="#{Calculator.expressao}"/>
                         </td>
                 
 		</tr>
 		<tr>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="7" action="#{Calculator.recebe(7)}" /></td>
+                            <h:commandButton class="btn" type="submit" value="7" action="#{Calculator.recebe('7')}" /></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="8" action="#{Calculator.recebe(8)}" /></td>
+                            <h:commandButton class="btn" type="submit" value="8" action="#{Calculator.recebe('8')}" /></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="9" action="#{Calculator.recebe(9)}" /></td>
+                            <h:commandButton class="btn" type="submit" value="9" action="#{Calculator.recebe('9')}" /></td>
 			<td>
                             <h:commandButton class="btn" type="submit" value="+" action="#{Calculator.recebe('+')}"/></td>
 		</tr>
 		<tr>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="4" action="#{Calculator.recebe(4)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="4" action="#{Calculator.recebe('4')}"/></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="5" action="#{Calculator.recebe(5)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="5" action="#{Calculator.recebe('5')}"/></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="6" action="#{Calculator.recebe(6)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="6" action="#{Calculator.recebe('6')}"/></td>
 			<td>
                             <h:commandButton class="btn" type="submit" value="-" action="#{Calculator.recebe('-')}"/></td>
 		</tr>
 		<tr>
                         <td>
-                            <h:commandButton class="btn" type="submit" value="1" action="#{Calculator.recebe(1)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="1" action="#{Calculator.recebe('1')}"/></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="2" action="#{Calculator.recebe(2)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="2" action="#{Calculator.recebe('2')}"/></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="3" action="#{Calculator.recebe(3)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="3" action="#{Calculator.recebe('3')}"/></td>
 			<td>
                             <h:commandButton class="btn" type="submit" value="*" action="#{Calculator.recebe('*')}"/></td>
 		</tr>
@@ -53,7 +53,7 @@
 			<td>
                             <h:commandButton class="btn" type="submit" value="." action="#{Calculator.recebe('.')}"/></td>
 			<td>
-                            <h:commandButton class="btn" type="submit" value="0" action="#{Calculator.recebe(0)}"/></td>
+                            <h:commandButton class="btn" type="submit" value="0" action="#{Calculator.recebe('0')}"/></td>
 			<td>
                             <h:commandButton class="btn" type="submit" value="c" action="#{Calculator.limpa}"/></td>
 			<td>
@@ -68,6 +68,9 @@
 </table>
 
 <p>&nbsp;</p>
+
+<h5 align="center">By:</h5>
+<h5 align="center">Orlando Neves | Vitor Aires</h5>
 
     </h:body>
 </html>

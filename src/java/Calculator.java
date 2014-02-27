@@ -25,28 +25,76 @@ public class Calculator {
     String expressao;
     boolean calculado;
     Double aux;
+    boolean vazio;
+    int operador;
 
     /**
      * Creates a new instance of Calculator
      */
     public Calculator() {
-        expressao = "";
+        expressao = "0";
         calculado = false;
         aux=0.0;
+        vazio=true;
+        operador=0;
     }
 
     public String getExpressao() {
         return expressao;
     }
 
+    private boolean isOperador(String st){
+        return st.equals("*") || st.equals("+") || st.equals("/") || st.equals("-");
+    }
+    
+    private boolean isDivision(String st){
+        return st.equals("/");
+    }
+    
+    private boolean isDot(String st){
+        return st.equals(".");
+    }
+
     public void recebe(String str) {
 
-        expressao += str;
+        if(calculado){
+        
+            if(isOperador(str)){
+                    expressao += str;
+                    operador++;
+                    calculado=false;
+                }
+        }
+        
+        else{
+            if(vazio && isOperador(str)){
+                expressao="0";
+            }
+            else if(vazio && !isOperador(str)){
+                expressao = str;
+                vazio=false;
+            }
+            else{
+
+                if(isOperador(str) && operador<1){
+                    expressao += str;
+                    operador++;
+                }
+                else if(!isOperador(str)){
+
+                    expressao += str;
+                    operador=0;
+                }    
+            }
+        }
     }
 
     public void limpa() {
         
-        expressao = "";
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        session.invalidate();
+        //expressao = "0";
     }
 
     public void setExpressao(String expressao) {
@@ -58,23 +106,11 @@ public class Calculator {
         expressao=""+calcula(expressao);
     }
 
-//    public String getResponse() {
-//        if ((expressao != null)) {
-//
-//            //invalidate user session
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
-//            session.invalidate();
-//
-//            return "Resultado";
-//        } else {
-//
-//            return "<p>Sorry, </p>";
-//        }
-//    }
+
     private double calcula(String str) {
         //Verifica se foi realizado o calculo
         calculado = true;
+        
         //Cria 
         ArrayList<String> numeros = new ArrayList<>();
         ArrayList<String> operacoes = new ArrayList<>();

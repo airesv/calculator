@@ -157,18 +157,15 @@ public class Calculator {
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
         session.invalidate();
         
-        cb.calcula("");
+        //cb.calcula("");
         //expressao = "0";
     }
 
-    public void setExpressao(String expressao) {
-        this.expressao = expressao;
-    }
-
-    public String getResultado() {
+    
+    //método chamado pelo botão "="
+    public void resultado() {
         
-        //String exp = "" + calcula(expressao);
-
+        
         if (Double.isInfinite(cb.calcula(expressao))) {
 
             expressao = "Error! Can´t divide by zero";
@@ -182,14 +179,15 @@ public class Calculator {
         else {
             expressao = "" + cb.calcula(expressao);
         }
-        
-        
-        return expressao;
+                
+        //return expressao;
     }
 
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
   
-    
+    public void setExpressao(String expressao) {
+        this.expressao = expressao;
+    }
 }

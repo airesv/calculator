@@ -26,6 +26,7 @@ public class Calculator {
     boolean calculado;
     boolean temPonto;
     Double aux;
+    boolean menos;
     boolean vazio;
     int operador;
 
@@ -39,6 +40,7 @@ public class Calculator {
         vazio = true;
         operador = 0;
         temPonto = false;
+        menos=false;
     }
 
     public String getExpressao() {
@@ -51,6 +53,10 @@ public class Calculator {
 
     private boolean isDivision(String st) {
         return st.equals("/");
+    }
+    
+    private boolean isMenos (String st){
+        return st.equals("-");
     }
 
     private boolean isDot(String st) {
@@ -74,14 +80,30 @@ public class Calculator {
             //Se a caixa está vazia (sem resultados)
             if(vazio){
                 
-                //verifica se o inserido é um operador e não deixa
+                //verifica se o inserido é um operador e não deixa.
                 if (isOperador(str)) {
-                    expressao = "0";
+                    
+                    if(isMenos(str)){
+                        expressao = "-";
+                        operador++;
+                        vazio=false;
+                    }
+                    else{
+                        expressao = "0";
+                        vazio=false;
+                    }
                 }
-                //Verifica se é um ponto, se for acrescenta à String e muda a boleana que indica se já foi inserido um ponto
+                //Verifica se é um ponto, se for acrescenta à String e muda a 
+                //boleana que indica se já foi inserido um ponto.
                 else if (isDot(str)) {
                     expressao += ".";
                     temPonto=true;
+                    vazio=false;
+                }
+                else{
+                     expressao = str;
+                     vazio=false;
+                    
                 }
             
             }
@@ -101,17 +123,27 @@ public class Calculator {
                 //Caso é operador e não tem operador, acrescenta, incrementa o contador de operador e troca a boleana
                 //caso contrário, não modifica a expressão
                 else if (isOperador(str)){
+                    
                     if (operador < 1) {
                         expressao += str;
                         operador++;
                         temPonto=false;
-                    } 
+                    }
+                    else if(isMenos(str)){
+                    
+                            if (operador < 2) {
+                            expressao += str;
+                            operador++;
+                            temPonto=false;
+                        }
+                    }
                 }
                 
                 //Caso não seja operador nem ponto
                 else if(!isOperador(str) && !isDot(str)) {
 
                     expressao += str;
+                    operador=0;
                 }
             }
         }

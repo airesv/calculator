@@ -134,16 +134,33 @@ public class Calculator {
             operacoes.add(op.nextToken());
         }
         
-        //Condição que verifica se o 1º token das operações é o sinal negativo,
-        //Se for, remove esse sinal e trata-o como equação com negativos, se não for
-        //remove o... (ainda falta verificar se o último caracter inserido é uma operação, se assim for tem de se remover)
+        //Verifica se o numero de tokens de operadores é igual ao de numeros,
+        //se for é porque estamos perante uma de duas situações:
+        //1 - O 1º numero é negativo se o 1º operador da lista for "-"
+        //2 - O ultimo operador foi inserido sem estar seguido de um número.
         if(tokenNum==tokenOp){
         
             if(operacoes.get(0).equals("-")){
             
+                //transforma o 1º numero da lista em negativo e apaga o 1º operador da lista
                 numeros.set(0, numeros.get(0)*-1);
                 operacoes.remove(0);
             }
+            else{
+            
+                //O ultimo operador não foi precedido de numero, portanto deve 
+                //ser apagado antes de concluir o cálculo da expressão inserida na máquina de calcular.
+                operacoes.remove(tokenOp-1);
+            }
+        }
+        //Quando o numero de operadores é maior do que o de números só podemos estar perante uma situação
+        //o 1º numero é negativo e a expressão inserida termina com um operador.
+        else if(tokenNum<tokenOp){
+            
+                numeros.set(0, numeros.get(0)*-1);
+                operacoes.remove(tokenOp-1);
+                operacoes.remove(0);
+            
         }
 
         double conta;

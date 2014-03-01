@@ -26,6 +26,8 @@ public class Calculator {
     boolean vazio;
     int operador;
     String resultado;
+    int inicio;
+    int fim;
     
     @EJB
     CalcBean cb;
@@ -41,11 +43,27 @@ public class Calculator {
         operador = 0;
         temPonto = false;
         menos=false;
+        //inicio=1;
+        //fim=20;
         
     }
 
     public String getExpressao() {
-        return expressao;
+        
+        inicio=1;
+        fim=20;
+        
+        if(20<=expressao.length()){
+            
+            expressao =expressao.substring(inicio, fim);
+            inicio++;
+            fim++;
+            
+            return expressao;
+        }
+        else{
+            return expressao;
+        }
     }
 
     private boolean isOperador(String st) {
@@ -142,7 +160,7 @@ public class Calculator {
                 
                 //Caso não seja operador nem ponto
                 else if(!isOperador(str) && !isDot(str)) {
-
+                    
                     expressao += str;
                     operador=0;
                 }
@@ -162,6 +180,7 @@ public class Calculator {
     //método chamado pelo botão "="
     public void resultado() {
         
+        calculado=true;
         
         if (Double.isInfinite(cb.calcula(expressao))) {
 

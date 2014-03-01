@@ -112,9 +112,10 @@ public class Calculator {
 
                     }
                 }
+                
                 //Verifica se é um ponto, se for acrescenta à String e muda a 
                 //boleana que indica se já foi inserido um ponto.
-                else if (isDot(str)) {
+                if (isDot(str)) {
                     expressao += ".";
                     temPonto=true;
                     vazio=false;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ejb;
 
 import java.util.ArrayList;
@@ -19,22 +18,21 @@ public class CalcBean {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
     String expressao;
     boolean calculado;
     boolean temPonto;
     Double aux;
-    
-   public CalcBean(){
-       
+
+    public CalcBean() {
+
         expressao = "0";
         calculado = false;
         aux = 0.0;
         temPonto = false;
-    
+
     }
 
-    private  void simplifica(String txt) {
+    private String simplifica(String txt) {
         //tranforma a string num arraylist de char
         ArrayList<Character> simbolo = new ArrayList<Character>();
         for (int i = 0; i < txt.length(); i++) {
@@ -80,26 +78,23 @@ public class CalcBean {
         for (Character character : simbolo) {
             txt += character;
         }
-
+        return txt;
     }
-   
-   
-   
+
     public double calcula(String str) {
         //Verifica se foi realizado o calculo
         //Como o resultado apresenta sempre um double, partimos do principio que 
         //o ponto já existe no número.
         calculado = true;
         temPonto = true;
-       simplifica(str);
+        String expDada = simplifica(str);
 
-        
         //dois ArrayList um com numeros e
         ArrayList<Double> numeros = new ArrayList<>();
         ArrayList<String> operacoes = new ArrayList<>();
 
-        StringTokenizer num = new StringTokenizer(str, "+-*/");
-        StringTokenizer op = new StringTokenizer(str, ".0123456789");
+        StringTokenizer num = new StringTokenizer(expDada, "+-*/");
+        StringTokenizer op = new StringTokenizer(expDada, ".0123456789");
 
         int tokenNum = num.countTokens();
         int tokenOp = op.countTokens();
@@ -112,10 +107,6 @@ public class CalcBean {
         while (op.hasMoreTokens()) {
             operacoes.add(op.nextToken());
         }
-        
-        
-        
-        
 
         //Verifica se o numero de tokens de operadores é igual ao de numeros,
         //se for é porque estamos perante uma de duas situações:
@@ -128,7 +119,7 @@ public class CalcBean {
                 //transforma o 1º numero da lista em negativo e apaga o 1º operador da lista
                 numeros.set(0, numeros.get(0) * -1);
                 operacoes.remove(0);
-                
+
             } else {
 
                 //O ultimo operador não foi precedido de numero, portanto deve 
@@ -226,5 +217,5 @@ public class CalcBean {
     public void setTemPonto(boolean temPonto) {
         this.temPonto = temPonto;
     }
-   
+
 }

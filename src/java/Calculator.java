@@ -28,6 +28,7 @@ public class Calculator {
     String resultado;
     int inicio;
     int fim;
+    String ex;
     
     @EJB
     CalcBean cb;
@@ -43,23 +44,20 @@ public class Calculator {
         operador = 0;
         temPonto = false;
         menos=false;
-        //inicio=1;
-        //fim=20;
+        inicio=1;
+        fim=20;
         
     }
 
     public String getExpressao() {
         
-        inicio=1;
-        fim=20;
-        
         if(20<=expressao.length()){
             
-            expressao =expressao.substring(inicio, fim);
+            ex=expressao.substring(inicio, fim);
             inicio++;
             fim++;
             
-            return expressao;
+            return ex;
         }
         else{
             return expressao;
@@ -122,8 +120,7 @@ public class Calculator {
                 }
                 else{
                      expressao = str;
-                     vazio=false;
-                    
+                     vazio=false; 
                 }
             
             }

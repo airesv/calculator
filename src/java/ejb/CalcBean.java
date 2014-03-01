@@ -106,7 +106,23 @@ public class CalcBean {
 
         while (op.hasMoreTokens()) {
             operacoes.add(op.nextToken());
+            
         }
+        int i=0;
+       while( i < operacoes.size()){
+           if (operacoes.get(i).equals("*-")){
+                numeros.set(i+1, numeros.get(i+1) * -1);
+                operacoes.set(i,"*");
+                
+           }
+         if (operacoes.get(i).equals("/-")){
+                numeros.set(i+1, numeros.get(i+1) * -1);
+                operacoes.set(i,"/");
+                
+           }
+         i++;
+       }
+        
 
         //Verifica se o numero de tokens de operadores é igual ao de numeros,
         //se for é porque estamos perante uma de duas situações:
@@ -138,7 +154,7 @@ public class CalcBean {
 
         double conta;
 
-        int i = 0;
+        i = 0;
 
         while (i < operacoes.size()) {
             if (operacoes.get(i).equals("/")) {

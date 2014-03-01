@@ -108,20 +108,7 @@ public class CalcBean {
             operacoes.add(op.nextToken());
             
         }
-        int i=0;
-       while( i < operacoes.size()){
-           if (operacoes.get(i).equals("*-")){
-                numeros.set(i+1, numeros.get(i+1) * -1);
-                operacoes.set(i,"*");
-                
-           }
-         if (operacoes.get(i).equals("/-")){
-                numeros.set(i+1, numeros.get(i+1) * -1);
-                operacoes.set(i,"/");
-                
-           }
-         i++;
-       }
+        
         
 
         //Verifica se o numero de tokens de operadores é igual ao de numeros,
@@ -151,6 +138,27 @@ public class CalcBean {
             operacoes.remove(0);
 
         }
+        
+        int i=0;
+       while( i < operacoes.size()){
+           if (operacoes.get(i).equals("*-")){
+                numeros.set(i+1, numeros.get(i+1) * -1);
+                operacoes.set(i,"*");
+                
+           }
+         if (operacoes.get(i).equals("/-")){
+                numeros.set(i+1, numeros.get(i+1) * -1);
+                operacoes.set(i,"/");
+                
+           }
+         i++;
+       }
+        
+        
+        
+        
+        
+        
 
         double conta;
 

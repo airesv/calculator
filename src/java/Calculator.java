@@ -26,8 +26,6 @@ public class Calculator {
     boolean vazio;
     int operador;
     String resultado;
-    int inicio;
-    int fim;
     String ex;
     
     @EJB
@@ -44,19 +42,15 @@ public class Calculator {
         operador = 0;
         temPonto = false;
         menos=false;
-        inicio=1;
-        fim=20;
         
     }
 
     public String getExpressao() {
         
-        if(20<=expressao.length()){
+        if(20<expressao.length()){
             
-            ex=expressao.substring(inicio, fim);
-            inicio++;
-            fim++;
-            
+            ex=expressao.substring(0, 20);
+        
             return ex;
         }
         else{
@@ -193,8 +187,7 @@ public class Calculator {
         else {
             expressao = "" + cb.calcula(expressao);
         }
-                
-        //return expressao;
+
     }
 
     public void setResultado(String resultado) {

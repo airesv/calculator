@@ -34,14 +34,67 @@ public class CalcBean {
     
     }
 
+    private  void simplifica(String txt) {
+        //tranforma a string num arraylist de char
+        ArrayList<Character> simbolo = new ArrayList<Character>();
+        for (int i = 0; i < txt.length(); i++) {
+            simbolo.add(txt.charAt(i));
+        }
+
+        boolean mudou = false;
+        int i = 0;
+
+        while (i < simbolo.size() - 1) {
+
+            mudou = false;
+
+            if (simbolo.get(i) == '+' && simbolo.get(i + 1) == '-') {
+                simbolo.set(i, '-');
+                simbolo.remove(i + 1);
+                mudou = true;
+            }
+            if (simbolo.get(i) == '+' && simbolo.get(i + 1) == '+') {
+                simbolo.set(i, '+');
+                simbolo.remove(i + 1);
+                mudou = true;
+            }
+
+            if (simbolo.get(i) == '-' && simbolo.get(i + 1) == '-') {
+                simbolo.set(i, '+');
+                simbolo.remove(i + 1);
+                mudou = true;
+            }
+            if (simbolo.get(i) == '-' && simbolo.get(i + 1) == '+') {
+                simbolo.set(i, '-');
+                simbolo.remove(i + 1);
+                mudou = true;
+            }
+
+            if (mudou == false) {
+                i++;
+            }
+
+        }
+
+        txt = "";
+        for (Character character : simbolo) {
+            txt += character;
+        }
+
+    }
+   
+   
+   
     public double calcula(String str) {
         //Verifica se foi realizado o calculo
         //Como o resultado apresenta sempre um double, partimos do principio que 
         //o ponto já existe no número.
         calculado = true;
         temPonto = true;
+       simplifica(str);
 
-
+        
+        //dois ArrayList um com numeros e
         ArrayList<Double> numeros = new ArrayList<>();
         ArrayList<String> operacoes = new ArrayList<>();
 
@@ -59,6 +112,10 @@ public class CalcBean {
         while (op.hasMoreTokens()) {
             operacoes.add(op.nextToken());
         }
+        
+        
+        
+        
 
         //Verifica se o numero de tokens de operadores é igual ao de numeros,
         //se for é porque estamos perante uma de duas situações:

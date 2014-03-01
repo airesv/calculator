@@ -149,7 +149,7 @@ public class Calculator {
                         }
                     }
                 }
-                
+             
                 //Caso não seja operador nem ponto
                 else if(!isOperador(str) && !isDot(str)) {
                     

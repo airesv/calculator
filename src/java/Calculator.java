@@ -11,8 +11,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Aires
+ * 
+ * @author Orlando Neves
+ * @author Vitor Aires
  */
 @ManagedBean(name = "Calculator")
 @SessionScoped
@@ -32,6 +33,7 @@ public class Calculator {
     CalcBean cb;
 
     /**
+     * 
      * Creates a new instance of Calculator
      */
     public Calculator() {
@@ -44,6 +46,12 @@ public class Calculator {
         menos=false;
         
     }
+    
+    /**
+     * Devolve a expressão, para escrever na calculadora
+     * 
+     * @return expressão a escrever na Calculadora
+     */
 
     public String getExpressao() {
         
@@ -58,22 +66,46 @@ public class Calculator {
         }
     }
 
+    /**
+     * Verifica se o caracter inserido é operador
+     * @param st caracter inserido através da calculadora
+     * @return True, se for operador, false caso contrario
+     */
     private boolean isOperador(String st) {
         return st.equals("*") || st.equals("+") || st.equals("/") || st.equals("-") || st.equals(".");
     }
-
+/**
+ * Verifica se o caracter inserido é  operador "divisão"
+ * @param st caracter inserido através da calculadora
+ * @return True, se for divisão, false caso contrario
+ */
     private boolean isDivision(String st) {
         return st.equals("/");
     }
+  
     
+    /**
+     * Verifica se o caracter inserido é operador "menos"
+     * @param st caracter inserido através da calculadora
+     * @return True, se for menos, false caso contrario
+     */
     private boolean isMenos (String st){
         return st.equals("-");
     }
-
+/**
+ * Verifica se o caracter inserido é ponto
+ * @param st caracter inserido através da calculadora
+ * @return True, se for porto, false caso contrario
+ */
     private boolean isDot(String st) {
         return st.equals(".");
     }
 
+    /**
+     * Recebe os caracteres inserido pelo utlizador.
+     * E realiza as verificações, pra aexibir na aplicação
+     * @param str caracter inserido através da calculadora
+     */
     public void recebe(String str) {
 
         //Se estivermos a trabalhar com um resultado anterior
@@ -160,7 +192,9 @@ public class Calculator {
         }
     }
     
-
+/**
+ * Fecha a sessão.
+ */
     public void limpa() {
 
         FacesContext context = FacesContext.getCurrentInstance();
@@ -169,7 +203,9 @@ public class Calculator {
     }
 
     
-    //método chamado pelo botão "="
+/**
+ * Recebe o calculo realizado pela classe CalcBean, que se encontra na parte logica
+ */
     public void resultado() {
         
         calculado=true;
@@ -189,11 +225,17 @@ public class Calculator {
         }
 
     }
-
+/**
+ * Atribui o resultado
+ * @param resultado calculo da expressão
+ */
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
-  
+  /**
+   * Atribui a expressão
+   * @param expressao conunto de operações a realizar.
+   */
     public void setExpressao(String expressao) {
         this.expressao = expressao;
     }

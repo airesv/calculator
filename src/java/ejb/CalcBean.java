@@ -11,7 +11,8 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author Zueb LDA
+ * @author Orlando Neves
+ * @author Vitor Aires
  */
 @Stateless
 public class CalcBean {
@@ -32,6 +33,7 @@ public class CalcBean {
 
     }
 
+    
     private String simplifica(String txt) {
         //tranforma a string num arraylist de char
         ArrayList<Character> simbolo = new ArrayList<Character>();
@@ -81,6 +83,11 @@ public class CalcBean {
         return txt;
     }
 
+    /**
+     * 
+     * Realiza a calculo da expressão inserida pelo utiulizador
+     * 
+     */
     public double calcula(String str) {
         //Verifica se foi realizado o calculo
         //Como o resultado apresenta sempre um double, partimos do principio que 
@@ -89,7 +96,7 @@ public class CalcBean {
         temPonto = true;
         String expDada = simplifica(str);
 
-        //dois ArrayList um com numeros e
+        
         ArrayList<Double> numeros = new ArrayList<>();
         ArrayList<String> operacoes = new ArrayList<>();
 
@@ -106,10 +113,8 @@ public class CalcBean {
 
         while (op.hasMoreTokens()) {
             operacoes.add(op.nextToken());
-            
+
         }
-        
-        
 
         //Verifica se o numero de tokens de operadores é igual ao de numeros,
         //se for é porque estamos perante uma de duas situações:
@@ -139,31 +144,34 @@ public class CalcBean {
 
         }
         
-        int i=0;
-       while( i < operacoes.size()){
-           if (operacoes.get(i).equals("*-")){
-                numeros.set(i+1, numeros.get(i+1) * -1);
-                operacoes.set(i,"*");
-                
-           }
-         if (operacoes.get(i).equals("/-")){
-                numeros.set(i+1, numeros.get(i+1) * -1);
-                operacoes.set(i,"/");
-                
-           }
-         i++;
-       }
         
-        
-        
-        
-        
-        
+        //simplifica a expressão no caso de aparecer a 
+        //multiplicação de numeros de sinais contrário
+
+        int i = 0;
+        while (i < operacoes.size()) {
+            if (operacoes.get(i).equals("*-")) {
+                numeros.set(i + 1, numeros.get(i + 1) * -1);
+                operacoes.set(i, "*");
+
+            }
+            if (operacoes.get(i).equals("/-")) {
+                numeros.set(i + 1, numeros.get(i + 1) * -1);
+                operacoes.set(i, "/");
+
+            }
+            i++;
+        }
 
         double conta;
 
         i = 0;
 
+        //realiza as operações por ordem de prioridade
+        //Em cada calculo realizado com sucesso, os arraylist dos numeros e operadores vão diminuindo
+        //No caso do arraylist dos numeros, cada calculo envolve dois numero, após do alculo o primeiro
+        //numero recebe o calculo efetuado, o osegundo é apagado.
+        //No cado do arraylist de operadores, em cada calculo realizado a operação é eliminda.
         while (i < operacoes.size()) {
             if (operacoes.get(i).equals("/")) {
 
@@ -226,18 +234,33 @@ public class CalcBean {
         return aux;
     }
 
+    /**
+     * Devolve  a expressã0
+     * @return 
+     */
     public String getExpressao() {
         return expressao;
     }
 
+    /**
+     * Atualiza a expressao
+     * @param expressao a escrever na Calculadora
+     */
     public void setExpressao(String expressao) {
         this.expressao = expressao;
     }
-
+/**
+ * Verifica se o numero escrito tem  ponto.
+ * @return True, se o caracter é ponto, false caso contrário
+ */
     public boolean isTemPonto() {
         return temPonto;
     }
 
+    /**
+     * Informa se o numero escrito tem ponto
+     * @param temPonto True, se o caracter é ponto, false caso contrário
+     */
     public void setTemPonto(boolean temPonto) {
         this.temPonto = temPonto;
     }

@@ -36,12 +36,12 @@ public class CalcBean {
     
     private String simplifica(String txt) {
         //tranforma a string num arraylist de char
-        ArrayList<Character> simbolo = new ArrayList<Character>();
+        ArrayList<Character> simbolo = new ArrayList();
         for (int i = 0; i < txt.length(); i++) {
             simbolo.add(txt.charAt(i));
         }
 
-        boolean mudou = false;
+        boolean mudou;
         int i = 0;
 
         while (i < simbolo.size() - 1) {
@@ -87,6 +87,8 @@ public class CalcBean {
      * 
      * Realiza a calculo da expressão inserida pelo utiulizador
      * 
+     * @param str
+     * @return 
      */
     public double calcula(String str) {
         //Verifica se foi realizado o calculo
@@ -229,7 +231,7 @@ public class CalcBean {
                 i++;
             }
         }
-        //guarda o valor caso necessite para continuar
+        //guarda o valor caso necessite para continuar a operação
         aux = (numeros.get(0));
         return aux;
     }
